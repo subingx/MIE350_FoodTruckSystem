@@ -16,5 +16,6 @@ public class CmsApplication  {
 		LOG.info("APPLICATION IS RUNNING");
 
 		//test git
+		//git
 	}
 }
