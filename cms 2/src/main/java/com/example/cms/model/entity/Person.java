@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-@MappedSuperclass
+
 @NoArgsConstructor
 @Getter
 @Setter
