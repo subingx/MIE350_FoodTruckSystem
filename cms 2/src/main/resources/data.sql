@@ -27,3 +27,15 @@ INSERT INTO marks(studentId, courseCode, mark) VALUES(5555, 'GOT123', 80);
 INSERT INTO marks(studentId, courseCode, mark) VALUES(5555, 'GOT456', 90);
 
 INSERT INTO customer (id, firstName, lastName, email) VALUES (1111, 'Subing', 'Xiang', 'subing.xiang@mail.utoronto.ca');
+
+
+
+INSERT INTO food_trucks (code, name, location, operating_hours, owner_id) VALUES ('TRUCK001' , 'Taco Truck', '123 College St', '9:00 AM - 5:00 PM', 1);
+INSERT INTO food_trucks (code, name, location, operating_hours, owner_id) VALUES ('TRUCK002', 'Burger Bus', '456 Bay st', '10:00 AM - 8:00 PM', 2);
+INSERT INTO food_trucks (code, name, location, operating_hours, owner_id) VALUES ('TRUCK003', 'Sushi Wagon', '789 University st', '11:00 AM - 7:00 PM', 3);
+INSERT INTO food_trucks (code, name, location, operating_hours, owner_id) VALUES ('TRUCK004', 'Pizza Van', '321 Maple st', '8:00 AM - 6:00 PM', 4);
+
+INSERT INTO food_truck_owners (first_name, last_name, email) VALUES ('Christy', 'Cui', 'christy.cui@mail.utoronto.ca');
+INSERT INTO food_truck_owners (first_name, last_name, email) VALUES ('Subing', 'Xiang', 'subing.xiang@mail.utoronto.ca');
+INSERT INTO food_truck_owners (first_name, last_name, email) VALUES ('Chu', 'Zhang', 'chu.zhang@mail.utoronto.ca');
+
