@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
+import java.util.ArrayList;
 
 
 @Entity
@@ -25,13 +27,22 @@ public class FoodTruck {
     @NotEmpty
     private String location;
 
-    @No
+    @NotEmpty
+    private String operatingHours;
 
+    @ManyToOne
+    @JoinColumn(name="ownerId")
+    private FoodTruckOwner owner;
 
-    public Department(String code, String name, String contactEmail){
+    @OneToMany(mappedBy = "foodTruck")
+    private List<MenuItem> menuItems = new ArrayList<>();
+
+    public FoodTruck(String code, String name, String location, String operatingHours, FoodTruckOwner owner){
         this.code = code;
         this.name = name;
-        this.contactEmail = contactEmail;
+        this.location = location;
+        this.operatingHours = operatingHours;
+        this.owner = owner;
     }
 
 }

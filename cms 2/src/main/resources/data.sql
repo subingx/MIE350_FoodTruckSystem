@@ -26,4 +26,8 @@ INSERT INTO marks(studentId, courseCode, mark) VALUES(5555, 'GOT789', 100);
 INSERT INTO marks(studentId, courseCode, mark) VALUES(5555, 'GOT123', 80);
 INSERT INTO marks(studentId, courseCode, mark) VALUES(5555, 'GOT456', 90);
 
-INSERT INTO customer (id, firstName, lastName, email) VALUES (1111, 'Subing', 'Xiang', 'subing.xiang@mail.utoronto.ca');
+INSERT INTO customers (id, firstName, lastName, email) VALUES (1111, 'Subing', 'Xiang', 'subing.xiang@mail.utoronto.ca');
+
+
+
+INSERT INTO food_trucks (name, location)
