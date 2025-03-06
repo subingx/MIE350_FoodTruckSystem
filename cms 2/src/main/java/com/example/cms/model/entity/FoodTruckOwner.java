@@ -18,19 +18,12 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "food_truck_owners")
+@Table(name = "foodtruckowners")
 public class FoodTruckOwner extends Person {
 
     @OneToMany(mappedBy = "owner")
     @Nullable
-    private List<FoodTruck> foodTrucks  = new ArrayList<>();
-
-    public FoodTruckOwner(String firstName, String lastName, String email) {
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setEmail(email);
-    }
-
+    @JsonManagedReference
+    private List<FoodTruck> foodTrucks = new ArrayList<>();
 
 }
-
