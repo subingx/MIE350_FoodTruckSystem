@@ -10,9 +10,13 @@ INSERT INTO foodtruckowners (id, firstName, lastName, email) VALUES (2, 'Subing'
 INSERT INTO foodtruckowners (id, firstName, lastName, email) VALUES (3, 'Chu', 'Zhang', 'chu.zhang@mail.utoronto.ca');
 
 
-INSERT INTO menu_items (name, description, price, isAvailable, truckCode) VALUES
-                                                                                     ('Beef Taco', 'Spicy beef taco with salsa', 4.99, TRUE, 'TRUCK001'),
-                                                                                     ('Classic Burger', 'Beef patty with lettuce and tomato', 7.99, TRUE, 'TRUCK002'),
-                                                                                     ('Salmon Sushi', 'Fresh salmon nigiri', 12.99, TRUE, 'TRUCK003'),
-                                                                                     ('Margherita Pizza', 'Tomato, mozzarella, basil', 10.99, TRUE, 'TRUCK004'),
-                                                                                     ('Ramen Bowl', 'Pork broth with noodles', 9.99, TRUE, 'TRUCK005');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M001', 'Classic Burger', 8.99, TRUE, 'TRUCK001');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M002', 'Spicy Chicken Sandwich', 7.49, TRUE, 'TRUCK002');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M003', 'Vegetarian Wrap', 6.99, TRUE, 'TRUCK003');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M004', 'BBQ Pulled Pork Sandwich', 9.99, TRUE, 'TRUCK004');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M005', 'Grilled Cheese', 5.49, TRUE, 'TRUCK002');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M006', 'Loaded Nachos', 7.99, TRUE, 'TRUCK003');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M007', 'Fish Tacos', 10.99, TRUE, 'TRUCK004');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M008', 'Loaded Nachos', 7.99, TRUE, 'TRUCK003');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M009', 'Caesar Salad', 6.49, TRUE, 'TRUCK001');
+INSERT INTO menu_items (code, name, description, price, isAvailable, truckCode) VALUES ('M010', 'Chocolate Milkshake', 4.99, TRUE, 'TRUCK002');
