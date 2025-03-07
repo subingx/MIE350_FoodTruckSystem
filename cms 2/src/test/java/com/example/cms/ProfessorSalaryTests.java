@@ -1,6 +1,5 @@
 package com.example.cms;
 
-import com.example.cms.model.repository.ProfessorRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

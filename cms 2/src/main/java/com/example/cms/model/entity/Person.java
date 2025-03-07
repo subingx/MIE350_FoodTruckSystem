@@ -8,14 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.persistence.*;
 
 
 @NoArgsConstructor
 @Getter
 @Setter
+
+
+@MappedSuperclass // Add this annotation
 public abstract class Person {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generate IDs
     private long id;
 
     @NotEmpty
@@ -27,5 +32,4 @@ public abstract class Person {
     @Email
     @NotEmpty
     private String email;
-
 }
