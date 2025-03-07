@@ -12,9 +12,14 @@ INSERT INTO food_truck_owners (first_name, last_name, email) VALUES ('Subing', '
 INSERT INTO food_truck_owners (first_name, last_name, email) VALUES ('Chu', 'Zhang', 'chu.zhang@mail.utoronto.ca');
 
 
-INSERT INTO menu_items (name, description, price, is_available, food_truck_code) VALUES
-                                                                                     ('Beef Taco', 'Spicy beef taco with salsa', 4.99, TRUE, 'TRUCK001'),
-                                                                                     ('Classic Burger', 'Beef patty with lettuce and tomato', 7.99, TRUE, 'TRUCK002'),
-                                                                                     ('Salmon Sushi', 'Fresh salmon nigiri', 12.99, TRUE, 'TRUCK003'),
-                                                                                     ('Margherita Pizza', 'Tomato, mozzarella, basil', 10.99, TRUE, 'TRUCK004'),
-                                                                                     ('Ramen Bowl', 'Pork broth with noodles', 9.99, TRUE, 'TRUCK005');
+INSERT INTO menu_items (code, name, price, is_available, truck_id) VALUES
+    ('M001', 'Classic Burger', 8.99, TRUE, 'TRUCK001'),
+    ('M002', 'Spicy Chicken Sandwich', 7.49, TRUE, 'TRUCK002'),
+    ('M003', 'Vegetarian Wrap', 6.99, TRUE, 'TRUCK003'),
+    ('M004', 'BBQ Pulled Pork Sandwich', 9.99, TRUE, 'TRUCK004'),
+    ('M005', 'Grilled Cheese', 5.49, TRUE, 'TRUCK002'),
+    ('M006', 'Loaded Nachos', 7.99, TRUE, 'TRUCK003'),
+    ('M007', 'Fish Tacos', 10.99, TRUE, 'TRUCK004'),
+    ('M008', 'Buffalo Wings', 12.49, TRUE, 'TRUCK004'),
+    ('M009', 'Caesar Salad', 6.49, TRUE, 'TRUCK001'),
+    ('M010', 'Chocolate Milkshake', 4.99, TRUE, 'TRUCK002');
