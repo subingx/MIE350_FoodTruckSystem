@@ -31,8 +31,8 @@ public class MenuItemController {
 
     @PostMapping("/menuitems")
     MenuItem createMenuItem(@RequestBody MenuItem newMenuItem) {
-        FoodTruck foodTruck = foodTruckRepository.findById(newMenuItem.getFoodTruck().getCode()).orElseThrow(
-                () -> new FoodTruckNotFoundException(newMenuItem.getFoodTruck().getCode()));
+        FoodTruck foodTruck = foodTruckRepository.findById(newMenuItem.getFoodTruck().getId()).orElseThrow(
+                () -> new FoodTruckNotFoundException(newMenuItem.getFoodTruck().getId()));
         newMenuItem.setFoodTruck(foodTruck);
         return repository.save(newMenuItem);
     }

@@ -30,7 +30,7 @@ public class MenuItem {
     private boolean isAvailable;
 
     @ManyToOne
-    @JoinColumn(name = "truckId", nullable = false)
+    @JoinColumn(name = "truckCode", nullable = false)
     private FoodTruck foodTruck;
 
     public MenuItem(String code, String name, Double price, boolean isAvailable, FoodTruck foodTruck) {
