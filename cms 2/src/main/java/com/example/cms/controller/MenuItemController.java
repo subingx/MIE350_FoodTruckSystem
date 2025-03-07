@@ -1,7 +1,7 @@
 package com.example.cms.controller;
 
-import com.example.cms.controller.exceptions.MenuItemNotFoundException;
 import com.example.cms.controller.exceptions.FoodTruckNotFoundException;
+import com.example.cms.controller.exceptions.MenuItemNotFoundException;
 import com.example.cms.model.entity.MenuItem;
 import com.example.cms.model.entity.FoodTruck;
 import com.example.cms.model.repository.MenuItemRepository;
@@ -9,14 +9,11 @@ import com.example.cms.model.repository.FoodTruckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/menuitems")
 public class MenuItemController {
-
     @Autowired
     private final MenuItemRepository repository;
 
@@ -27,35 +24,28 @@ public class MenuItemController {
         this.repository = repository;
     }
 
-    // Retrieve all menu items
-    @GetMapping
+    @GetMapping("/menuitems")
     List<MenuItem> retrieveAllMenuItems() {
         return repository.findAll();
     }
 
-    // Create a new menu item
-    @PostMapping
+    @PostMapping("/menuitems")
     MenuItem createMenuItem(@RequestBody MenuItem newMenuItem) {
-        // Fetch the associated FoodTruck
-        if (newMenuItem.getFoodTruck() != null && newMenuItem.getFoodTruck().getId() != null) {
-            FoodTruck foodTruck = foodTruckRepository.findById(newMenuItem.getFoodTruck().getId())
-                    .orElseThrow(() -> new FoodTruckNotFoundException(newMenuItem.getFoodTruck().getId()));
-            newMenuItem.setFoodTruck(foodTruck);
-        }
+        FoodTruck foodTruck = foodTruckRepository.findById(newMenuItem.getFoodTruck().getId()).orElseThrow(
+                () -> new FoodTruckNotFoundException(newMenuItem.getFoodTruck().getId()));
+        newMenuItem.setFoodTruck(foodTruck);
         return repository.save(newMenuItem);
     }
 
-    // Retrieve a specific menu item by code
-    @GetMapping("/{code}")
-    MenuItem retrieveMenuItem(@PathVariable("code") String code) {
-        return repository.findById(code)
-                .orElseThrow(() -> new MenuItemNotFoundException(code));
+    @GetMapping("/menuitems/{code}")
+    MenuItem retrieveMenuItem(@PathVariable("code") String itemCode) {
+        return repository.findById(itemCode)
+                .orElseThrow(() -> new MenuItemNotFoundException(itemCode));
     }
 
 
-    // Delete a menu item by ID
-    @DeleteMapping("/{code}")
-    void deleteMenuItem(@PathVariable("code") String code) {
-        repository.deleteById(code);
+    @DeleteMapping("/menuitems/{code}")
+    void deleteMenuItem(@PathVariable("code") String itemCode) {
+        repository.deleteById(itemCode);
     }
 }
