@@ -1,9 +1,6 @@
 package com.example.cms.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +20,7 @@ public class FoodTruckOwner extends Person {
 
     @OneToMany(mappedBy = "owner")
     @Nullable
-    @JsonManagedReference
+    @JsonBackReference
     private List<FoodTruck> foodTrucks = new ArrayList<>();
 
 }

@@ -1,5 +1,7 @@
 package com.example.cms.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,9 +33,10 @@ public class MenuItem {
 
     @ManyToOne
     @JoinColumn(name = "truckCode", nullable = false)
+    @JsonIgnoreProperties({"menu_items"})
     private FoodTruck foodTruck;
 
-    public MenuItem(String code, String name, Double price, boolean isAvailable, FoodTruck foodTruck) {
+    public MenuItem(String code, String name, Double price, Boolean isAvailable, FoodTruck foodTruck) {
         this.code = code;
         this.name = name;
         this.price = price;

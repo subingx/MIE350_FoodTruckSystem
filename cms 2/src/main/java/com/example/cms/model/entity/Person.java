@@ -14,13 +14,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-
-
 @MappedSuperclass // Add this annotation
 public abstract class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generate IDs
+   // @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generate IDs
     private long id;
 
     @NotEmpty

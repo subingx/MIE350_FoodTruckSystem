@@ -1,5 +1,7 @@
 package com.example.cms.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,18 +33,19 @@ public class FoodTruck {
     private String operatingHours;
 
     @ManyToOne
-    @JoinColumn(name="ownerId")
+    @JoinColumn(name="ownerId", nullable = false)
+    @JsonIgnoreProperties("foodTrucks")
     private FoodTruckOwner owner;
 
     @OneToMany(mappedBy = "foodTruck")
     private List<MenuItem> menuItems = new ArrayList<>();
 
-    public FoodTruck(String code, String name, String location, String operatingHours, FoodTruckOwner owner){
-        this.code = code;
-        this.name = name;
-        this.location = location;
-        this.operatingHours = operatingHours;
-        this.owner = owner;
-    }
+//    public FoodTruck(String code, String name, String location, String operatingHours, FoodTruckOwner owner){
+//        this.code = code;
+//        this.name = name;
+//        this.location = location;
+//        this.operatingHours = operatingHours;
+//        this.owner = owner;
+//    }
 
 }

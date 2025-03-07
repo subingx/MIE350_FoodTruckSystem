@@ -35,17 +35,17 @@ public class FoodTruckController {
         return foodTruckRepository.findById(truckCode)
                 .orElseThrow(() -> new FoodTruckNotFoundException(truckCode));
     }
-
-    @PostMapping("/foodtrucks")
-    FoodTruck createFoodTruck(@RequestBody FoodTruckDto FoodTruckDto) {
-        FoodTruck newFoodTruck = new FoodTruck();
-        newFoodTruck.setName(FoodTruckDto.getName());
-        newFoodTruck.setCode(FoodTruckDto.getCode());
-        FoodTruckOwner owner = ownerRepository.findById(FoodTruckDto.getOwnerId()).orElseThrow(
-                () -> new FoodTruckOwnerNotFoundException(FoodTruckDto.getOwnerId()) );
-        newFoodTruck.setOwner(owner);
-        return foodTruckRepository.save(newFoodTruck);
-    }
+//
+//    @PostMapping("/foodtrucks")
+//    FoodTruck createFoodTruck(@RequestBody FoodTruckDto FoodTruckDto) {
+//        FoodTruck newFoodTruck = new FoodTruck();
+//        newFoodTruck.setName(FoodTruckDto.getName());
+//        newFoodTruck.setCode(FoodTruckDto.getCode());
+//        FoodTruckOwner owner = ownerRepository.findById(FoodTruckDto.getOwnerId()).orElseThrow(
+//                () -> new FoodTruckOwnerNotFoundException(FoodTruckDto.getOwnerId()) );
+//        newFoodTruck.setOwner(owner);
+//        return foodTruckRepository.save(newFoodTruck);
+//    }
 
 
     @DeleteMapping("/foodtrucks/{code}")
