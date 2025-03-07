@@ -16,22 +16,26 @@ import javax.validation.constraints.NotNull;
 public class MenuItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @NotEmpty
+    private String code;
 
     @NotEmpty
     private String name;
 
-    @NotNull
+    @NotEmpty
     private Double price;
 
+    private boolean isAvailable;
+
     @ManyToOne
-    @JoinColumn(name = "foodTruckId")
+    @JoinColumn(name = "truckId")
     private FoodTruck foodTruck;
 
-    public MenuItem(String name, Double price, FoodTruck foodTruck) {
+    public MenuItem(String code, String name, Double price, Boolean isAvailable, FoodTruck foodTruck) {
+        this.code = code;
         this.name = name;
         this.price = price;
+        this.isAvailable = isAvailable;
         this.foodTruck = foodTruck;
     }
 }
