@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "food_truck_owners")
+@Table(name = "foodtruckowners")
 public class FoodTruckOwner extends Person {
 
     @OneToMany(mappedBy = "owner")

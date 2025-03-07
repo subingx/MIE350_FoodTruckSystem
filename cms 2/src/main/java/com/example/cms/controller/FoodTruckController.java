@@ -30,14 +30,11 @@ public class FoodTruckController {
     List<FoodTruck> retrieveAllFoodTrucks() {return foodTruckRepository.findAll();}
 
 
-
     @GetMapping("/foodtrucks/{code}")
     FoodTruck retrieveFoodTruck(@PathVariable("code") String truckCode) {
         return foodTruckRepository.findById(truckCode)
                 .orElseThrow(() -> new FoodTruckNotFoundException(truckCode));
     }
-
-    //
 
     @PostMapping("/foodtrucks")
     FoodTruck createFoodTruck(@RequestBody FoodTruckDto FoodTruckDto) {
