@@ -6,10 +6,7 @@ import com.example.cms.controller.exceptions.FoodTruckNotFoundException;
 import com.example.cms.model.entity.*;
 import com.example.cms.model.repository.*;
 
-import com.example.cms.model.entity.Course;
-import com.example.cms.model.entity.Professor;
 import com.example.cms.model.repository.FoodTruckRepository;
-import com.example.cms.model.repository.ProfessorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
