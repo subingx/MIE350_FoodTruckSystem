@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -22,16 +23,17 @@ public class MenuItem {
     @NotEmpty
     private String name;
 
-    @NotEmpty
+    @NotNull
+    @Min(0) // Ensures price is not negative
     private Double price;
 
     private boolean isAvailable;
 
     @ManyToOne
-    @JoinColumn(name = "truckId")
+    @JoinColumn(name = "truckId", nullable = false)
     private FoodTruck foodTruck;
 
-    public MenuItem(String code, String name, Double price, Boolean isAvailable, FoodTruck foodTruck) {
+    public MenuItem(String code, String name, Double price, boolean isAvailable, FoodTruck foodTruck) {
         this.code = code;
         this.name = name;
         this.price = price;
