@@ -10,7 +10,7 @@ INSERT INTO foodtrucks (code, name, location, operatingHours, ownerId) VALUES ('
 INSERT INTO foodtrucks (code, name, location, operatingHours, ownerId) VALUES ('TRUCK004', 'Pizza Van', '321 Maple St', '8:00 AM - 6:00 PM', 2);
 
 
-INSERT INTO menu_items (code, name, price, isAvailable, truckCode) VALUES
+INSERT INTO menuItems (code, name, price, isAvailable, truckCode) VALUES
     ('TACO001', 'Beef Taco', 4.99, TRUE, 'TRUCK001'),
     ('BURGER002', 'Classic Burger', 7.99, TRUE, 'TRUCK002'),
     ('SUSHI003', 'Salmon Sushi', 12.99, TRUE, 'TRUCK003'),

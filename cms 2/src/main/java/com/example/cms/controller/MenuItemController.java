@@ -30,13 +30,13 @@ public class MenuItemController {
         return repository.findAll();
     }
 
-//    @PostMapping("/menuitems")
-//    MenuItem createMenuItem(@RequestBody MenuItem newMenuItem) {
-//        FoodTruck foodTruck = foodTruckRepository.findById(newMenuItem.getFoodTruck().getCode()).orElseThrow(
-//                () -> new FoodTruckNotFoundException(newMenuItem.getFoodTruck().getCode()));
-//        newMenuItem.setFoodTruck(foodTruck);
-//        return repository.save(newMenuItem);
-//    }
+    @PostMapping("/menuitems")
+    MenuItem createMenuItem(@RequestBody MenuItem newMenuItem) {
+        FoodTruck foodTruck = foodTruckRepository.findById(newMenuItem.getFoodTruck().getCode()).orElseThrow(
+                () -> new FoodTruckNotFoundException(newMenuItem.getFoodTruck().getCode()));
+        newMenuItem.setFoodTruck(foodTruck);
+        return repository.save(newMenuItem);
+    }
 
     @GetMapping("/menuitems/{code}")
     MenuItem retrieveMenuItem(@PathVariable("code") String itemCode) {

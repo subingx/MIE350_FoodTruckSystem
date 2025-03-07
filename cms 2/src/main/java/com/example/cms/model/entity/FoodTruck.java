@@ -1,11 +1,9 @@
 package com.example.cms.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -26,10 +24,8 @@ public class FoodTruck {
     @NotEmpty
     private String name;
 
-    @NotEmpty
     private String location;
 
-    @NotEmpty
     private String operatingHours;
 
     @ManyToOne
