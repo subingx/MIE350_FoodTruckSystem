@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "food_trucks")
+@Table(name = "foodtrucks")
 public class FoodTruck {
 
     @Id
