@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "menu_items")
+@Table(name = "menuitems")
 public class MenuItem {
 
     @Id
