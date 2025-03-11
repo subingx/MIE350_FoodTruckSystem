@@ -17,6 +17,8 @@ import java.util.List;
 @Table(name = "foodtruckowners")
 public class FoodTruckOwner extends Person {
 
+    private String password;
+
     @OneToMany(mappedBy = "owner")
     @Nullable
     @JsonBackReference
