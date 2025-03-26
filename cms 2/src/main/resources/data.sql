@@ -22,3 +22,9 @@ INSERT INTO customers (id, firstName, lastName, email, password) VALUES
 (103, 'Carla', 'Singh', 'carla.singh@example.com', 'mypassword'),
 (104, 'Daniel', 'Kim', 'daniel.kim@example.com', 'qwerty789'),
 (105, 'Eva', 'Chen', 'eva.chen@example.com', 'letmein123');
+
+INSERT INTO favorites (customerId, truckCode) VALUES (101, 'TRUCK001');
+INSERT INTO favorites (customerId, truckCode) VALUES (102, 'TRUCK002');
+INSERT INTO favorites (customerId, truckCode) VALUES (103, 'TRUCK003');
+INSERT INTO favorites (customerId, truckCode) VALUES (104, 'TRUCK001');
+INSERT INTO favorites (customerId, truckCode) VALUES (105, 'TRUCK004');
