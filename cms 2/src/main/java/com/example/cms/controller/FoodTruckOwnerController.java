@@ -44,4 +44,11 @@ public class FoodTruckOwnerController {
     void deleteOwner(@PathVariable("id") Long ownerId) {
         repository.deleteById(ownerId);
     }
+
+    // Login
+    @PostMapping("/foodtruckowners/login")
+    FoodTruckOwner loginOwner(@RequestBody FoodTruckOwner loginInfo) {
+        return repository.findByEmailAndPassword(loginInfo.getEmail(), loginInfo.getPassword());
+    }
+
 }
