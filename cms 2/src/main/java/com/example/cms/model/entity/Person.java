@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @NoArgsConstructor
@@ -29,4 +30,7 @@ public abstract class Person {
     @Email
     @NotEmpty
     private String email;
+
+
+
 }

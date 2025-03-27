@@ -1,5 +1,6 @@
 package com.example.cms.controller;
 
+import com.example.cms.controller.dto.FoodTruckOwnerDto;
 import com.example.cms.controller.exceptions.FoodTruckOwnerNotFoundException;
 import com.example.cms.model.entity.FoodTruckOwner;
 import com.example.cms.model.repository.FoodTruckOwnerRepository;
@@ -49,6 +50,28 @@ public class FoodTruckOwnerController {
     @PostMapping("/foodtruckowners/login")
     FoodTruckOwner loginOwner(@RequestBody FoodTruckOwner loginInfo) {
         return repository.findByEmailAndPassword(loginInfo.getEmail(), loginInfo.getPassword());
+    }
+
+    @PutMapping("/foodtruckowners/{id}")
+    FoodTruckOwner updateFoodTruckOwner(@RequestBody FoodTruckOwnerDto foodTruckOwnerDto, @PathVariable("id") Long ownerId) {
+
+        return repository.findById(ownerId)
+                .map(owner -> {
+                    owner.setFirstName(foodTruckOwnerDto.getFirstName());
+                    owner.setLastName(foodTruckOwnerDto.getLastName());
+                    owner.setEmail(foodTruckOwnerDto.getEmail());
+                    owner.setPassword(foodTruckOwnerDto.getPassword());
+                    return repository.save(owner);
+                })
+                .orElseGet(() -> {
+                    FoodTruckOwner newOwner = new FoodTruckOwner();
+                    newOwner.setId(ownerId);
+                    newOwner.setFirstName(foodTruckOwnerDto.getFirstName());
+                    newOwner.setLastName(foodTruckOwnerDto.getLastName());
+                    newOwner.setEmail(foodTruckOwnerDto.getEmail());
+                    newOwner.setPassword(foodTruckOwnerDto.getPassword());
+                    return repository.save(newOwner);
+                });
     }
 
 }

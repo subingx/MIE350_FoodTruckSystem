@@ -60,4 +60,26 @@ public class FavoriteController {
     void deleteFavorite(@PathVariable Long id) {
         favoriteRepository.deleteById(id);
     }
+
+    @PutMapping("/favorites/{id}")
+    Favorite updateFavorite(@PathVariable Long id, @RequestParam Long customerId, @RequestParam String truckCode) {
+        return favoriteRepository.findById(id)
+                .map(favorite -> {
+                    Customer customer = customerRepository.findById(customerId)
+                            .orElseThrow(() -> new CustomerNotFoundException(customerId));
+                    FoodTruck truck = truckRepository.findById(truckCode)
+                            .orElseThrow(() -> new FoodTruckNotFoundException(truckCode));
+
+                    favorite.setCustomer(customer);
+                    favorite.setFoodTruck(truck);
+
+                    return favoriteRepository.save(favorite);
+                })
+                .orElseThrow(() -> new RuntimeException("Favorite not found with id " + id));
+    }
+
+    @GetMapping("/favorites/top")
+    List<FoodTruck> getTopFavoriteFoodTrucks() {
+        return favoriteRepository.findTopFavoriteFoodTrucks();
+    }
 }

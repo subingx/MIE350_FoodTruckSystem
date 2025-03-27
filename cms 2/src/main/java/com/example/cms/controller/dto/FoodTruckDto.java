@@ -10,4 +10,7 @@ public class FoodTruckDto {
     private String code;
     private String name;
     private Long ownerId;
+    private String location;
+    private String operatingHours;
+
 }

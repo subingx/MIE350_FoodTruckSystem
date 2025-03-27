@@ -15,5 +15,15 @@ public class Customer extends Person {
 
     private String password;
 
+
+    //if needed
+//    private String address;
+//    private String city;
+//    private String postalCode;
+//    private String province;
+
+
     // Can add more attributes like phoneNumber...
+
+    //added in Person
 }

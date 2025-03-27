@@ -1,7 +1,9 @@
 package com.example.cms.controller;
 
+import com.example.cms.controller.dto.MenuItemDto;
 import com.example.cms.controller.exceptions.FoodTruckNotFoundException;
 import com.example.cms.controller.exceptions.MenuItemNotFoundException;
+import com.example.cms.model.entity.FoodTruckOwner;
 import com.example.cms.model.entity.MenuItem;
 import com.example.cms.model.entity.FoodTruck;
 import com.example.cms.model.repository.MenuItemRepository;
@@ -49,4 +51,40 @@ public class MenuItemController {
     void deleteMenuItem(@PathVariable("code") String itemCode) {
         repository.deleteById(itemCode);
     }
+
+    @PutMapping("/menuitems/{code}")
+    MenuItem updateMenuItem(@RequestBody MenuItemDto menuItemDto, @PathVariable("code") String itemCode) {
+        return repository.findById(itemCode)
+                .map(item -> {
+                    item.setName(menuItemDto.getName());
+                    item.setPrice(menuItemDto.getPrice());
+                    item.setAvailable(menuItemDto.getIsAvailable());
+
+                    if (menuItemDto.getTruckCode() != null) {
+                        FoodTruck foodTruck = foodTruckRepository.findById(menuItemDto.getTruckCode())
+                                .orElseThrow(() -> new FoodTruckNotFoundException(menuItemDto.getTruckCode()));
+                        item.setFoodTruck(foodTruck);
+                    }
+
+                    return repository.save(item);
+                })
+                .orElseGet(() -> {
+                    FoodTruck foodTruck = foodTruckRepository.findById(menuItemDto.getTruckCode())
+                            .orElseThrow(() -> new FoodTruckNotFoundException(menuItemDto.getTruckCode()));
+
+                    MenuItem newMenuItem = new MenuItem();
+
+                    newMenuItem.setCode(itemCode);
+                    newMenuItem.setName(itemCode);
+                    newMenuItem.setPrice(menuItemDto.getPrice());
+                    newMenuItem.setAvailable(menuItemDto.getIsAvailable());
+                    newMenuItem.setFoodTruck(foodTruck);
+
+                    return repository.save(newMenuItem);
+
+
+                });
+    }
+
+
 }

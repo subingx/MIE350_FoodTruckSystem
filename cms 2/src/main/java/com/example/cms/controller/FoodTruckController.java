@@ -21,6 +21,8 @@ public class FoodTruckController {
 
     @Autowired
     private FoodTruckOwnerRepository ownerRepository;
+    @Autowired
+    private FoodTruckOwnerRepository foodTruckOwnerRepository;
 
     public FoodTruckController(FoodTruckRepository repository) {
         this.foodTruckRepository = repository;
@@ -44,9 +46,40 @@ public class FoodTruckController {
         FoodTruckOwner owner = ownerRepository.findById(foodTruckDto.getOwnerId()).orElseThrow(
                 () -> new FoodTruckOwnerNotFoundException(foodTruckDto.getOwnerId()) );
         newFoodTruck.setOwner(owner);
+        newFoodTruck.setLocation(foodTruckDto.getLocation());
+        newFoodTruck.setOperatingHours(foodTruckDto.getOperatingHours());
         return foodTruckRepository.save(newFoodTruck);
     }
 
+    @PutMapping("/foodtrucks/{code}")
+    FoodTruck updateFoodTruck(@RequestBody FoodTruckDto foodTruckDto, @PathVariable("code") String truckCode) {
+        return foodTruckRepository.findById(truckCode)
+                .map(foodTruck -> {
+                    foodTruck.setName(foodTruckDto.getName());
+                    FoodTruckOwner owner = foodTruckOwnerRepository.findById(foodTruckDto.getOwnerId()).orElseThrow(
+                            () -> new FoodTruckOwnerNotFoundException(foodTruckDto.getOwnerId()));
+                    foodTruck.setOwner(owner);
+                    foodTruck.setOperatingHours(foodTruckDto.getOperatingHours());
+                    foodTruck.setLocation(foodTruckDto.getLocation());
+                    return foodTruckRepository.save(foodTruck);
+                })
+                .orElseGet(() -> {
+                    FoodTruck newFoodTruck = new FoodTruck();
+                    newFoodTruck.setCode(truckCode);
+                    FoodTruckOwner owner = foodTruckOwnerRepository.findById(foodTruckDto.getOwnerId()).orElseThrow(
+                            () -> new FoodTruckOwnerNotFoundException(foodTruckDto.getOwnerId()));
+                    newFoodTruck.setOwner(owner);
+                    newFoodTruck.setLocation(foodTruckDto.getLocation());
+                    newFoodTruck.setOperatingHours(foodTruckDto.getOperatingHours());
+                    newFoodTruck.setName(foodTruckDto.getName());
+                    return foodTruckRepository.save(newFoodTruck);
+                });
+    }
+
+    @GetMapping("/foodtrucks/byOwnerId/{ownerId}")
+    List<FoodTruck> getFoodTrucksByOwnerId(@PathVariable("ownerId") Long ownerId) {
+        return foodTruckRepository.findFoodTruckBy_OwnerId(ownerId);
+    }
 
     @DeleteMapping("/foodtrucks/{code}")
     void deleteFoodTruck(@PathVariable("code") String truckCode) {
