@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class FavoriteController {
+public abstract class FavoriteController {
 
     @Autowired
     private final FavoriteRepository favoriteRepository;
@@ -82,4 +82,6 @@ public class FavoriteController {
     List<FoodTruck> getTopFavoriteFoodTrucks() {
         return favoriteRepository.findTopFavoriteFoodTrucks();
     }
+
+
 }

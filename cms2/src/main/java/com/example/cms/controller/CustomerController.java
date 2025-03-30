@@ -7,6 +7,7 @@ import com.example.cms.controller.exceptions.FoodTruckOwnerNotFoundException;
 import com.example.cms.model.entity.Customer;
 import com.example.cms.model.entity.FoodTruckOwner;
 import com.example.cms.model.repository.CustomerRepository;
+import com.example.cms.model.repository.FavoriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,9 @@ public class CustomerController {
 
     @Autowired
     private final CustomerRepository repository;
+
+    @Autowired
+    private FavoriteRepository favoriteRepository;
 
     public CustomerController(CustomerRepository repository) {
         this.repository = repository;
@@ -33,14 +37,23 @@ public class CustomerController {
         return repository.findById(customerId).orElseThrow(() -> new CustomerNotFoundException(customerId));
     }
 
-
     @PostMapping("/customers")
     Customer createCustomer(@RequestBody Customer newCustomer) {
         return repository.save(newCustomer);
     }
 
+//    @DeleteMapping("/customers/{id}")
+//    void deleteCustomer(@PathVariable("id") Long customerId) {
+//        repository.deleteById(customerId);
+//    }
+
     @DeleteMapping("/customers/{id}")
     void deleteCustomer(@PathVariable("id") Long customerId) {
+        Customer customer = repository.findById(customerId)
+                .orElseThrow(() -> new CustomerNotFoundException(customerId));
+
+        favoriteRepository.deleteByCustomerId(customerId);
+
         repository.deleteById(customerId);
     }
 

@@ -15,4 +15,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
     @Query(value = "SELECT f.foodTruck FROM Favorite f GROUP BY f.foodTruck ORDER BY COUNT(f) DESC")
     List<FoodTruck> findTopFavoriteFoodTrucks();
 
+    void deleteByCustomerId(Long customerId);
+
 }
