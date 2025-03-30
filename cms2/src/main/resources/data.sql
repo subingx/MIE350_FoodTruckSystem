@@ -16,11 +16,23 @@ INSERT INTO foodtrucks (code, name, location, operatingHours, ownerId) VALUES
 ('TRUCK007', 'Crepe Corner', '88 Bloor St', '8:00 AM - 4:00 PM', 1),
 ('TRUCK008', 'Vegan Vibes', '66 Queen St', '12:00 PM - 6:00 PM', 3);
 
+
 INSERT INTO menuItems (code, name, price, isAvailable, truckCode) VALUES
     ('TACO001', 'Beef Taco', 4.99, TRUE, 'TRUCK001'),
     ('BURGER002', 'Classic Burger', 7.99, TRUE, 'TRUCK002'),
     ('SUSHI003', 'Salmon Sushi', 12.99, TRUE, 'TRUCK003'),
-    ('PIZZA004', 'Margherita Pizza', 10.99, TRUE, 'TRUCK004');
+    ('PIZZA004', 'Margherita Pizza', 10.99, TRUE, 'TRUCK004'),
+    ('NOODLE005', 'Spicy Ramen', 9.49, TRUE, 'TRUCK005'),
+    ('KEBAB006', 'Chicken Kebab', 8.99, TRUE, 'TRUCK006'),
+    ('CREPE007', 'Strawberry Crepe', 6.49, TRUE, 'TRUCK007'),
+    ('VEGAN008', 'Tofu Bowl', 7.99, TRUE, 'TRUCK008'),
+    ('BURGER003', 'Bacon Cheeseburger', 9.99, TRUE, 'TRUCK002'),
+    ('TACO002', 'Veggie Taco', 4.49, TRUE, 'TRUCK001'),
+    ('SUSHI004', 'Tuna Roll', 11.49, TRUE, 'TRUCK003'),
+    ('PIZZA005', 'Pepperoni Pizza', 11.99, TRUE, 'TRUCK004'),
+    ('NOODLE006', 'Udon Noodles', 8.79, TRUE, 'TRUCK005'),
+    ('CREPE008', 'Nutella Banana Crepe', 6.99, TRUE, 'TRUCK007'),
+    ('VEGAN009', 'Quinoa Salad', 7.49, TRUE, 'TRUCK008');
 
 INSERT INTO customers (id, firstName, lastName, email, password) VALUES
 (101, 'Alice', 'Wong', 'alice.wong@example.com', 'pass123'),

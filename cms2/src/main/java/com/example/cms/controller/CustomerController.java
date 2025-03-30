@@ -63,7 +63,7 @@ public class CustomerController {
                 })
                 .orElseGet(() -> {
                     Customer newCustomer = new Customer();
-                    newCustomer.setId(id);
+                    newCustomer.setId(id); //Id wont be changed
                     newCustomer.setFirstName(customerDto.getFirstName());
                     newCustomer.setLastName(customerDto.getLastName());
                     newCustomer.setEmail(customerDto.getEmail());

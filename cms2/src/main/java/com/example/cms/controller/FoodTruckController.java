@@ -9,6 +9,7 @@ import com.example.cms.model.repository.*;
 import com.example.cms.model.repository.FoodTruckRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -80,6 +81,7 @@ public class FoodTruckController {
     List<FoodTruck> getFoodTrucksByOwnerId(@PathVariable("ownerId") Long ownerId) {
         return foodTruckRepository.findFoodTruckBy_OwnerId(ownerId);
     }
+
 
     @DeleteMapping("/foodtrucks/{code}")
     void deleteFoodTruck(@PathVariable("code") String truckCode) {
