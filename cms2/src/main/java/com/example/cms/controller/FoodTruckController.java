@@ -21,9 +21,13 @@ public class FoodTruckController {
     private final FoodTruckRepository foodTruckRepository;
 
     @Autowired
-    private FoodTruckOwnerRepository ownerRepository;
-    @Autowired
     private FoodTruckOwnerRepository foodTruckOwnerRepository;
+
+    @Autowired
+    private FavoriteRepository favoriteRepository;
+
+    @Autowired
+    private  MenuItemRepository menuItemRepository;
 
     public FoodTruckController(FoodTruckRepository repository) {
         this.foodTruckRepository = repository;
@@ -44,7 +48,7 @@ public class FoodTruckController {
         FoodTruck newFoodTruck = new FoodTruck();
         newFoodTruck.setName(foodTruckDto.getName());
         newFoodTruck.setCode(foodTruckDto.getCode());
-        FoodTruckOwner owner = ownerRepository.findById(foodTruckDto.getOwnerId()).orElseThrow(
+        FoodTruckOwner owner = foodTruckOwnerRepository.findById(foodTruckDto.getOwnerId()).orElseThrow(
                 () -> new FoodTruckOwnerNotFoundException(foodTruckDto.getOwnerId()) );
         newFoodTruck.setOwner(owner);
         newFoodTruck.setLocation(foodTruckDto.getLocation());
@@ -84,7 +88,13 @@ public class FoodTruckController {
 
 
     @DeleteMapping("/foodtrucks/{code}")
+    @Transactional
     void deleteFoodTruck(@PathVariable("code") String truckCode) {
+        if (!foodTruckRepository.existsById(truckCode)) {
+            throw new FoodTruckNotFoundException(truckCode);
+        }
+        favoriteRepository.deleteByFoodTruckCode(truckCode);
+        menuItemRepository.deleteByFoodTruckCode(truckCode);
         foodTruckRepository.deleteById(truckCode);
     }
 

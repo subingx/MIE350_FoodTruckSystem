@@ -36,12 +36,12 @@ public class FoodTruck {
     @OneToMany(mappedBy = "foodTruck")
     private List<MenuItem> menuItems = new ArrayList<>();
 
-//    public FoodTruck(String code, String name, String location, String operatingHours, FoodTruckOwner owner){
-//        this.code = code;
-//        this.name = name;
-//        this.location = location;
-//        this.operatingHours = operatingHours;
-//        this.owner = owner;
-//    }
+    public FoodTruck(String code, String name, String location, String operatingHours, FoodTruckOwner owner){
+        this.code = code;
+        this.name = name;
+        this.location = location;
+        this.operatingHours = operatingHours;
+        this.owner = owner;
+    }
 
 }

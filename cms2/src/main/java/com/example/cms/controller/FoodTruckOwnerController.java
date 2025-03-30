@@ -1,10 +1,16 @@
 package com.example.cms.controller;
 
 import com.example.cms.controller.dto.FoodTruckOwnerDto;
+import com.example.cms.controller.exceptions.CustomerNotFoundException;
 import com.example.cms.controller.exceptions.FoodTruckOwnerNotFoundException;
+import com.example.cms.model.entity.FoodTruck;
 import com.example.cms.model.entity.FoodTruckOwner;
+import com.example.cms.model.repository.FavoriteRepository;
 import com.example.cms.model.repository.FoodTruckOwnerRepository;
+import com.example.cms.model.repository.FoodTruckRepository;
+import com.example.cms.model.repository.MenuItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +21,15 @@ public class FoodTruckOwnerController {
 
     @Autowired
     private final FoodTruckOwnerRepository repository;
+
+    @Autowired
+    private FoodTruckRepository foodTruckRepository;
+
+    @Autowired
+    private FavoriteRepository favoriteRepository;
+
+    @Autowired
+    private MenuItemRepository menuItemRepository;
 
     public FoodTruckOwnerController(FoodTruckOwnerRepository repository) {
         this.repository = repository;
@@ -42,9 +57,22 @@ public class FoodTruckOwnerController {
 
     // Delete a food truck owner by ID
     @DeleteMapping("/foodtruckowners/{id}")
+    @Transactional
     void deleteOwner(@PathVariable("id") Long ownerId) {
+        if (!repository.existsById(ownerId)) {
+            throw new FoodTruckOwnerNotFoundException(ownerId);
+        }
+
+        List<FoodTruck> trucks = foodTruckRepository.findByOwnerId(ownerId);
+        for (FoodTruck truck : trucks) {
+            // Delete related favorites and menu items first
+            favoriteRepository.deleteByFoodTruckCode(truck.getCode());
+            menuItemRepository.deleteByFoodTruckCode(truck.getCode());
+            foodTruckRepository.deleteById(truck.getCode());
+        }
         repository.deleteById(ownerId);
     }
+
 
     // Login
     @PostMapping("/foodtruckowners/login")

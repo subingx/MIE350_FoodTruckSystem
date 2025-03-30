@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public abstract class FavoriteController {
+public class FavoriteController {
 
     @Autowired
     private final FavoriteRepository favoriteRepository;
@@ -56,9 +56,10 @@ public abstract class FavoriteController {
     }
 
     // Delete a favorite
-    @DeleteMapping("/favorites/{id}")
-    void deleteFavorite(@PathVariable Long id) {
-        favoriteRepository.deleteById(id);
+    @DeleteMapping("/favorites/{customerId}/{truckCode}")
+    void deleteFavoriteByCustomerAndTruck(@PathVariable("customerId") Long customerId,
+                                          @PathVariable("truckCode") String truckCode) {
+        favoriteRepository.deleteByCustomerIdAndFoodTruckCode(customerId, truckCode);
     }
 
     @PutMapping("/favorites/{id}")

@@ -1,14 +1,13 @@
 package com.example.cms.controller;
 
 import com.example.cms.controller.dto.CustomerDto;
-import com.example.cms.controller.dto.FoodTruckOwnerDto;
 import com.example.cms.controller.exceptions.CustomerNotFoundException;
-import com.example.cms.controller.exceptions.FoodTruckOwnerNotFoundException;
 import com.example.cms.model.entity.Customer;
-import com.example.cms.model.entity.FoodTruckOwner;
 import com.example.cms.model.repository.CustomerRepository;
 import com.example.cms.model.repository.FavoriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,20 +41,18 @@ public class CustomerController {
         return repository.save(newCustomer);
     }
 
-//    @DeleteMapping("/customers/{id}")
-//    void deleteCustomer(@PathVariable("id") Long customerId) {
-//        repository.deleteById(customerId);
-//    }
-
     @DeleteMapping("/customers/{id}")
+    @Transactional
     void deleteCustomer(@PathVariable("id") Long customerId) {
-        Customer customer = repository.findById(customerId)
-                .orElseThrow(() -> new CustomerNotFoundException(customerId));
+        if (!repository.existsById(customerId)) {
+            throw new CustomerNotFoundException(customerId);
+        }
 
-        favoriteRepository.deleteByCustomerId(customerId);
+        favoriteRepository.deleteByCustomerId(customerId); // Spring JPA will handle this
 
-        repository.deleteById(customerId);
+        repository.deleteById(customerId); // Delete the customer
     }
+
 
     // Login
     @PostMapping("/customers/login")

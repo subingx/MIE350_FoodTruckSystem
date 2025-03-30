@@ -142,11 +142,12 @@ class FavoriteTests {
 		Favorite savedFavorite = favoriteRepository.save(favorite);
 
 		MockHttpServletResponse response = mockMvc.perform(
-						delete("/favorites/" + savedFavorite.getId()))
+						delete("/favorites/" + customer.getId() + "/" + truck.getCode()))
 				.andReturn().getResponse();
 
 		assertEquals(200, response.getStatus());
-		assertFalse(favoriteRepository.findById(savedFavorite.getId()).isPresent());
+		assertTrue(favoriteRepository.findByCustomerIdAndFoodTruckCode(
+				customer.getId(), truck.getCode()).isEmpty());
 	}
 
 	@Test
