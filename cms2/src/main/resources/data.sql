@@ -1,9 +1,9 @@
 
-INSERT INTO foodtruckowners (id, firstName, lastName, email) VALUES (1, 'Christy', 'Cui', 'christy.cui@mail.utoronto.ca');
-INSERT INTO foodtruckowners (id, firstName, lastName, email) VALUES (2, 'Subing', 'Xiang', 'subing.xiang@mail.utoronto.ca');
-INSERT INTO foodtruckowners (id, firstName, lastName, email) VALUES (3, 'Chu', 'Zhang', 'chu.zhang@mail.utoronto.ca');
-INSERT INTO foodtruckowners (id, firstName, lastName, email) VALUES (4, 'Linda', 'Wells', 'linda.wells@mail.utoronto.ca');
-INSERT INTO foodtruckowners (id, firstName, lastName, email) VALUES (5, 'Mike', 'Tian', 'mike.tian@mail.utoronto.ca');
+INSERT INTO foodtruckowners (id, firstName, lastName, email, password) VALUES (1, 'Christy', 'Cui', 'christy.cui@mail.utoronto.ca', 'nihao666');
+INSERT INTO foodtruckowners (id, firstName, lastName, email, password) VALUES (2, 'Subing', 'Xiang', 'subing.xiang@mail.utoronto.ca','wanshanghao123');
+INSERT INTO foodtruckowners (id, firstName, lastName, email, password) VALUES (3, 'Chu', 'Zhang', 'chu.zhang@mail.utoronto.ca', 'xiawuhao789');
+INSERT INTO foodtruckowners (id, firstName, lastName, email, password) VALUES (4, 'Linda', 'Wells', 'linda.wells@mail.utoronto.ca', 'zaoshanghao456');
+INSERT INTO foodtruckowners (id, firstName, lastName, email, password) VALUES (5, 'Mike', 'Tian', 'mike.tian@mail.utoronto.ca', 'wanan999');
 
 INSERT INTO foodtrucks (code, name, location, operatingHours, ownerId) VALUES ('TRUCK001', 'Taco Truck', '123 College St', '9:00 AM - 5:00 PM', 1);
 INSERT INTO foodtrucks (code, name, location, operatingHours, ownerId) VALUES ('TRUCK002', 'Burger Bus', '456 Bay St', '10:00 AM - 8:00 PM', 2);
