@@ -2,6 +2,7 @@ package com.example.cms.controller;
 
 import com.example.cms.controller.dto.FoodTruckOwnerDto;
 import com.example.cms.controller.exceptions.CustomerNotFoundException;
+import com.example.cms.controller.exceptions.FoodTruckOwnerAlreadyExistsException;
 import com.example.cms.controller.exceptions.FoodTruckOwnerNotFoundException;
 import com.example.cms.model.entity.FoodTruck;
 import com.example.cms.model.entity.FoodTruckOwner;
@@ -51,6 +52,9 @@ public class FoodTruckOwnerController {
     // Create a new food truck owner
     @PostMapping("/foodtruckowners")
     FoodTruckOwner createOwner(@RequestBody FoodTruckOwner newOwner) {
+        if (repository.existsById(newOwner.getId())) {
+            throw new FoodTruckOwnerAlreadyExistsException(newOwner.getId());
+        }
         return repository.save(newOwner);
     }
 
