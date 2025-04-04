@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.controller.dto.CustomerDto;
+import com.example.cms.controller.exceptions.CustomerAlreadyExistsException;
 import com.example.cms.controller.exceptions.CustomerNotFoundException;
 import com.example.cms.model.entity.Customer;
 import com.example.cms.model.repository.CustomerRepository;
@@ -38,6 +39,10 @@ public class CustomerController {
 
     @PostMapping("/customers")
     Customer createCustomer(@RequestBody Customer newCustomer) {
+        if (repository.existsById(newCustomer.getId())) {
+            throw new CustomerAlreadyExistsException(newCustomer.getId());
+        }
+
         return repository.save(newCustomer);
     }
 
