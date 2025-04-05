@@ -6,9 +6,14 @@ import lombok.Setter;
 @Setter
 
 public class MenuItemDto {
+    private String itemCode;
     private String name;
     private Double price;
     private Boolean isAvailable;
     private String truckCode;
+
+    public Boolean getIsAvailable() {return isAvailable;}
+
+    public void setIsAvailable(Boolean isAvailable) {this.isAvailable = isAvailable; }
 
 }
