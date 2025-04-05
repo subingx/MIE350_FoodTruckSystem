@@ -33,10 +33,17 @@ public class MenuItemController {
     }
 
     @PostMapping("/menuitems")
-    MenuItem createMenuItem(@RequestBody MenuItem newMenuItem) {
-        FoodTruck foodTruck = foodTruckRepository.findById(newMenuItem.getFoodTruck().getCode()).orElseThrow(
-                () -> new FoodTruckNotFoundException(newMenuItem.getFoodTruck().getCode()));
+    MenuItem createMenuItem(@RequestBody MenuItemDto menuItemDto) {
+        MenuItem newMenuItem = new MenuItem();
+        FoodTruck foodTruck = foodTruckRepository.findById(menuItemDto.getTruckCode())
+                .orElseThrow(() -> new FoodTruckNotFoundException(menuItemDto.getTruckCode()));
+
+        newMenuItem.setCode(menuItemDto.getItemCode());
+        newMenuItem.setName(menuItemDto.getName());
+        newMenuItem.setPrice(menuItemDto.getPrice());
+        newMenuItem.setAvailable(menuItemDto.getIsAvailable());
         newMenuItem.setFoodTruck(foodTruck);
+
         return repository.save(newMenuItem);
     }
 
@@ -85,6 +92,11 @@ public class MenuItemController {
 
                 });
     }
+    @GetMapping("/menuitems/byTruck/{truckCode}")
+    List<MenuItem> retrieveMenuItemsByTruck(@PathVariable("truckCode") String truckCode) {
+        return menuItemRepository.findByTruckCode(truckCode);
+    }
+
 
 
 }
