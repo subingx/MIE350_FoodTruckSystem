@@ -12,4 +12,7 @@ public interface MenuItemRepository extends JpaRepository<MenuItem, String> {
     @Modifying
     @Transactional
     void deleteByFoodTruckCode(String truckCode);
+
+    @Query(value = "SELECT * FROM menuItems m INNER JOIN foodtrucks f ON m.truckCode = f.code WHERE f.code =:truckCode", nativeQuery = true)
+    List<MenuItem> findByTruckCode(@Param("truckCode") String truckCode);
 }
