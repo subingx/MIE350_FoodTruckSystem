@@ -31,8 +31,8 @@ public class FavoriteController {
     }
 
     // Add a new favorite
-    @PostMapping("/favorites")
-    Favorite createFavorite(@RequestParam Long customerId, @RequestParam String truckCode) {
+    @PostMapping("/favorites/{customerId}/{truckCode}")
+    Favorite createFavorite(@PathVariable Long customerId, @PathVariable String truckCode) {
         Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new CustomerNotFoundException(customerId) );
         FoodTruck truck = truckRepository.findById(truckCode).orElseThrow(() -> new FoodTruckNotFoundException(truckCode));
 
